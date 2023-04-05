@@ -26,7 +26,7 @@ public class EmployeeDaoImpl implements EmployeeDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Employee was added____________");
+        System.out.println("Employee was added");
     }
 
     @Override
@@ -104,6 +104,7 @@ public class EmployeeDaoImpl implements EmployeeDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("Employee was updated");
     }
 
     @Override
@@ -119,6 +120,7 @@ public class EmployeeDaoImpl implements EmployeeDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("Employee was deleted");
 
     }
 }

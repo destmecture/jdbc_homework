@@ -33,7 +33,12 @@ public class Application {
         City moscow = new City(1, "Moscow");
         Employee employee1 = new Employee(7,"Evgeniy", "Evgeniev", "male", 44, moscow);
 
-
+        EmployeeDaoImpl emp1 = new EmployeeDaoImpl();
+        emp1.addEmployee(employee1);
+        System.out.println(emp1.getEmployeeById(1));
+        System.out.println(emp1.getAllEmployee());
+        emp1.updateEmployee(6, employee1);
+        emp1.deleteEmployee(10);
 
     }
 }
