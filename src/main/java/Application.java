@@ -1,7 +1,7 @@
 import java.sql.*;
 
 public class Application {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
 
         final String user = "postgres";
         final String password = "kxudlprd";
@@ -31,14 +31,19 @@ public class Application {
             e.printStackTrace();
         }
         City moscow = new City(1, "Moscow");
-        Employee employee1 = new Employee(7,"Evgeniy", "Evgeniev", "male", 44, moscow);
+        Employee employee1 = new Employee(20,"Evgeniy", "Semenov", "male", 44, moscow.getId());
 
         EmployeeDaoImpl emp1 = new EmployeeDaoImpl();
+        System.out.println("_______________");
         emp1.addEmployee(employee1);
+        System.out.println("_______________");
         System.out.println(emp1.getEmployeeById(1));
+        System.out.println("_______________");
         System.out.println(emp1.getAllEmployee());
-        emp1.updateEmployee(6, employee1);
-        emp1.deleteEmployee(10);
+        System.out.println("_______________");
+        emp1.updateEmployee(4, employee1);
+        System.out.println("_______________");
+        //emp1.deleteEmployee(3);
 
     }
 }
