@@ -1,14 +1,25 @@
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "employee")
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "gender")
     private String gender;
+    @Column(name = "age")
     private int age;
-    private City city;
+    @Column(name = "city_id")
+    private int city;
 
-    public Employee(int id, String firstName, String lastName, String gender, int age, City city) {
+    public Employee(int id, String firstName, String lastName, String gender, int age, int city) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -41,7 +52,7 @@ public class Employee {
         return age;
     }
 
-    public City getCity() {
+    public int getCity() {
         return city;
     }
 
@@ -70,7 +81,7 @@ public class Employee {
         this.age = age;
     }
 
-    public void setCity(City city) {
+    public void setCity(int city) {
         this.city = city;
     }
 
@@ -82,7 +93,7 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id == employee.id && age == employee.age && firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && gender.equals(employee.gender) && city.equals(employee.city);
+        return id == employee.id && age == employee.age && city == employee.city && firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && gender.equals(employee.gender);
     }
 
     @Override
