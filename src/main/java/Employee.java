@@ -16,16 +16,20 @@ public class Employee {
     private String gender;
     @Column(name = "age")
     private int age;
-    @Column(name = "city_id")
-    private int city;
+    @Column(name = "city_ident")
+    private int cityId;
 
-    public Employee(int id, String firstName, String lastName, String gender, int age, int city) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id")
+    private City city;
+
+    public Employee(int id, String firstName, String lastName, String gender, int age, int cityId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-        this.city = city;
+        this.cityId = cityId;
     }
     public Employee(){
     }
@@ -52,8 +56,8 @@ public class Employee {
         return age;
     }
 
-    public int getCity() {
-        return city;
+    public int getCityId() {
+        return cityId;
     }
 
 
@@ -81,8 +85,8 @@ public class Employee {
         this.age = age;
     }
 
-    public void setCity(int city) {
-        this.city = city;
+    public void setCityId(int city) {
+        this.cityId = city;
     }
 
     //endregion
@@ -93,12 +97,12 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id == employee.id && age == employee.age && city == employee.city && firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && gender.equals(employee.gender);
+        return id == employee.id && age == employee.age && cityId == employee.cityId && firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && gender.equals(employee.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, gender, age, city);
+        return Objects.hash(id, firstName, lastName, gender, age, cityId);
     }
 
     @Override
@@ -109,7 +113,7 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", age=" + age +
-                ", city=" + city +
+                ", city=" + cityId +
                 '}';
     }
 }
