@@ -25,16 +25,8 @@ public class Employee {
     @JoinColumn(name = "city_id", insertable = false, updatable = false)
     private City city;
 
-    public Employee(int id, String firstName, String lastName, String gender, int age, int cityId) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.age = age;
-        this.cityId = cityId;
-    }
-    public Employee(int id, String firstName, String lastName, String gender, int age, City city) {
-        this.id = id;
+
+    public Employee(String firstName, String lastName, String gender, int age, City city) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;

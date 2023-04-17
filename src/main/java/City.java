@@ -15,8 +15,7 @@ public class City {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "city", cascade = CascadeType.ALL)
     private List<Employee> employees;
 
-    public City(int id, String name) {
-        this.id = id;
+    public City(String name) {
         this.name = name;
     }
 
