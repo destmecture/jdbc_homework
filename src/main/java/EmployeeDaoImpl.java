@@ -17,7 +17,7 @@ public class EmployeeDaoImpl implements EmployeeDAO{
 
         try(Session session = HibernateConnectUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
-            session.save(employee);
+            session.persist(employee);
             transaction.commit();
         }
         System.out.println("Employee was added");

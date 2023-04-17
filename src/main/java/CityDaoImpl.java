@@ -7,12 +7,14 @@ public class CityDaoImpl implements CityDAO{
 
     @Override
     public void addCity(City city) {
+        int idCit;
         try(Session session = HibernateConnectUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
             session.save(city);
             transaction.commit();
         }
         System.out.println("City was added");
+
     }
 
     @Override

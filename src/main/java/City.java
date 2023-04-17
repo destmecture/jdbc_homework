@@ -6,13 +6,13 @@ import java.util.Objects;
 @Table(name = "city")
 public class City {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "city_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "city_ident")
     private int id;
     @Column(name = "city_name")
     private String name;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "city", cascade = CascadeType.ALL)
     private List<Employee> employees;
 
     public City(int id, String name) {
@@ -46,6 +46,10 @@ public class City {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
     @Override
