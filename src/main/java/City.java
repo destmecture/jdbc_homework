@@ -1,4 +1,5 @@
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,8 +13,8 @@ public class City {
     @Column(name = "city_name")
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "city", cascade = CascadeType.ALL)
-    private List<Employee> employees;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Employee> employees = new ArrayList<>();
 
     public City(String name) {
         this.name = name;
@@ -21,6 +22,15 @@ public class City {
 
     public City() {
 
+    }
+
+    public void addEmployee(Employee employee){
+        employee.setCity(this);
+        employees.add(employee);
+    }
+    public void removeEmployee(Employee employee){
+        employee.setCity(null);
+        employees.remove(employee);
     }
     //region getters and setters
 

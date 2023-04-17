@@ -16,13 +16,12 @@ public class Employee {
     private String gender;
     @Column(name = "age")
     private int age;
-    @Column(name = "city_id")
-    private int cityId;
+
 
 
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "city_id", insertable = false, updatable = false)
+    @JoinColumn(name = "city_id")
     private City city;
 
 
@@ -59,9 +58,7 @@ public class Employee {
         return age;
     }
 
-    public int getCityId() {
-        return cityId;
-    }
+
 
 
     //endregion
@@ -88,10 +85,9 @@ public class Employee {
         this.age = age;
     }
 
-    public void setCityId(int city) {
-        this.cityId = city;
+    public void setCity(City city) {
+        this.city = city;
     }
-
     //endregion
 
 
@@ -100,12 +96,12 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id == employee.id && age == employee.age && cityId == employee.cityId && firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && gender.equals(employee.gender);
+        return id == employee.id && age == employee.age  && firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && gender.equals(employee.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, gender, age, cityId);
+        return Objects.hash(id, firstName, lastName, gender, age);
     }
 
     @Override
