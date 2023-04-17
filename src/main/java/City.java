@@ -6,8 +6,8 @@ import java.util.Objects;
 @Table(name = "city")
 public class City {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "city_ident")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "city_id")
     private int id;
     @Column(name = "city_name")
     private String name;

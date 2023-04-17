@@ -2,11 +2,12 @@ import java.sql.*;
 import java.util.List;
 
 public class Application {
+
     public static void main(String[] args) {
 
         City podolsk = new City(4,"Podolsk");
         City kaluga = new City(120,"Kaluga");
-        City kaluga2 = new City(120,"Kaluga2349999955");
+        City kaluga2 = new City(120,"Kaluga23955");
 
         CityDaoImpl cityDao = new CityDaoImpl();
 
@@ -20,7 +21,10 @@ public class Application {
 
         EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
 
-        //cityDao.addCity(kaluga2);
+        cityDao.addCity(kaluga2);
+
+
+
 
         //cityDao.updateCity(kaluga2.getId(), kaluga2);
 
