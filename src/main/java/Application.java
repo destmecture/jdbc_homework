@@ -1,49 +1,31 @@
 import java.sql.*;
+import java.util.List;
 
 public class Application {
+
     public static void main(String[] args) {
 
-        final String user = "postgres";
-        final String password = "kxudlprd";
-        final String url = "jdbc:postgresql://localhost:5432/skypro";
 
-        try(final Connection connection =
-                    DriverManager.getConnection(url, user, password);
-            PreparedStatement statement =
-                    connection.prepareStatement("SELECT * FROM employee")){
+        City kaluga2 = new City("Kaluga");
 
-            final ResultSet resultSet = statement.executeQuery();
+        CityDaoImpl cityDao = new CityDaoImpl();
+        EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
 
-            while(resultSet.next()){
-                String name = resultSet.getString("first_name");
-                String surname = resultSet.getString("last_name");
-                String gender = resultSet.getString("gender");
-                int age = resultSet.getInt("age");
-                int id = resultSet.getInt("id");
+        Employee vladimir = new Employee("___1", "___1", "male", 35, kaluga2);
+        Employee dmitriy = new Employee("___2", "___2", "male", 23, kaluga2);
+        Employee ilya = new Employee("___3", "___3", "male", 27, kaluga2);
+        kaluga2.addEmployee(vladimir);
+        kaluga2.addEmployee(dmitriy);
+        kaluga2.addEmployee(ilya);
 
-                System.out.println("ID = "+id);
-                System.out.println("Name = "+name);
-                System.out.println("Surname = "+surname);
-                System.out.println("Gender = "+gender);
-                System.out.println("Age = "+age);
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        City moscow = new City(1, "Moscow");
-        Employee employee1 = new Employee(20,"Evgeniy", "Semenov", "male", 44, moscow.getId());
+        cityDao.addCity(kaluga2);
 
-        EmployeeDaoImpl emp1 = new EmployeeDaoImpl();
-        System.out.println("_______________");
-        emp1.addEmployee(employee1);
-        System.out.println("_______________");
-        System.out.println(emp1.getEmployeeById(1));
-        System.out.println("_______________");
-        System.out.println(emp1.getAllEmployee());
-        System.out.println("_______________");
-        emp1.updateEmployee(4, employee1);
-        System.out.println("_______________");
-        //emp1.deleteEmployee(3);
+        Employee ivan = new Employee("Ivan", "Ivanovich", "male", 27, kaluga2);
+
+        kaluga2.removeEmployee(vladimir);
+        kaluga2.addEmployee(ivan);
+        cityDao.updateCity(kaluga2.getId(), kaluga2);
+        cityDao.deleteCity(18);
 
     }
 }

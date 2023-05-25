@@ -1,62 +1,55 @@
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeDaoImpl implements EmployeeDAO{
-
-    final String user = "postgres";
-    final String password = "kxudlprd";
-    final String url = "jdbc:postgresql://localhost:5432/skypro";
+public class CityDaoImpl implements CityDAO{
 
     @Override
-    public void addEmployee(Employee employee) {
-
+    public void addCity(City city) {
+        int idCit;
         try(Session session = HibernateConnectUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
-            session.persist(employee);
+            session.save(city);
             transaction.commit();
         }
-        System.out.println("Employee was added");
+        System.out.println("City was added");
+
     }
 
     @Override
-    public Employee getEmployeeById(int id) {
+    public City getCityById(int id) {
 
         try (Session session = HibernateConnectUtil.getSessionFactory().openSession()){
-            return session.get(Employee.class, id);
+            return session.get(City.class, id);
         }
     }
 
     @Override
-    public List<Employee> getAllEmployee() {
+    public List<City> getAllCity() {
         try(Session session = HibernateConnectUtil.getSessionFactory().openSession()){
-            return session.createQuery("FROM Employee").list();
+            return session.createQuery("FROM City").list();
         }
     }
 
     @Override
-    public void updateEmployee(int id, Employee employee) {
+    public void updateCity(int id, City city) {
         try(Session session = HibernateConnectUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
-            employee.setId(id);
-            session.update(employee);
+            city.setId(id);
+            session.update(city);
             transaction.commit();
         }
-        System.out.println("Employee was updated");
+        System.out.println("City was updated");
     }
 
     @Override
-    public void deleteEmployee(int id) {
+    public void deleteCity(int id) {
         try(Session session = HibernateConnectUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();;
-            session.delete(getEmployeeById(id));
+            session.delete(getCityById(id));
             transaction.commit();
         }
-        System.out.println("Employee was deleted");
-
+        System.out.println("City was deleted");
     }
 }

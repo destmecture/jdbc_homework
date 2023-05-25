@@ -10,10 +10,7 @@ public class HibernateConnectUtil {
     public static SessionFactory getSessionFactory(){
         if(sessionFactory==null){
             try{
-                Configuration configuration = new Configuration().configure();
-                configuration.addAnnotatedClass(Employee.class);
-                StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-                sessionFactory = configuration.buildSessionFactory(builder.build());
+                sessionFactory =  new Configuration().configure().buildSessionFactory();
 
             }catch (Exception e){
                 e.printStackTrace();
